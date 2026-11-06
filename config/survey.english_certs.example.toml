@@ -1,0 +1,88 @@
+project_dir = "../.visuaslide/english-certs"
+
+# Public survey source (Issue #1, tab gid=1653201454).
+# Column range A:AG covers timestamp + 32 questions and deliberately excludes
+# the email column (AH) so it is never read into a snapshot.
+[source]
+spreadsheet_id = "14Ic0Zl7V5fr5dOkdo7ae5pwZpzk8v3HPGKliDHEQTiw"
+sheet_id = 1653201454
+header_row = 1
+column_range = "A:AG"
+
+[schema]
+variables = [
+  { name = "submitted_at", source_header = "Dấu thời gian", kind = "datetime", datetime_format = "%d/%m/%Y %H:%M:%S", timezone = "Asia/Ho_Chi_Minh" },
+  { name = "gender", source_header = "Câu 1. Giới tính của bạn là gì?", kind = "categorical", categories = ["Nam", "Nữ"] },
+  { name = "study_year", source_header = "Câu 2. Bạn đang là sinh viên năm mấy?", kind = "categorical", categories = ["Năm nhất", "Năm hai", "Năm ba", "Năm tư trở lên"] },
+  { name = "faculty", source_header = "Câu 3. Bạn đang học khoa nào?", kind = "categorical", categories = ["Khoa Công nghệ thông tin", "Khoa Dược", "Khoa Khoa học thể thao", "Khoa Khoa học xã hội và Nhân văn", "Khoa Khoa học ứng dụng", "Khoa Kế toán", "Khoa Kỹ thuật công trình", "Khoa Luật", "Khoa Mỹ thuật công nghiệp", "Khoa Ngoại ngữ", "Khoa Quản trị kinh doanh", "Khoa Toán -Thống kê", "Khoa Điện - Điện tử"] },
+  { name = "english_level", source_header = "Câu 4. Bạn đánh giá trình độ tiếng Anh của mình ở mức nào?", kind = "categorical", categories = ["Cơ bản", "Khá", "Mới bắt đầu", "Trung bình", "Tốt"] },
+  { name = "exam_experience", source_header = "Câu 5. Bạn đã từng ôn thi hoặc thi chứng chỉ tiếng Anh chưa?", kind = "categorical", categories = ["Chưa từng", "Đã học luyện thi nhưng chưa thi", "Đã thi ít nhất một chứng chỉ"] },
+  { name = "certificates_taken", source_header = "Câu 6. Bạn đã từng thi chứng chỉ tiếng Anh nào? (Có thể chọn nhiều đáp án)", kind = "text", trim_whitespace = true },
+  { name = "intended_certificate", source_header = "Câu 7. Bạn dự định thi chứng chỉ nào trong thời gian tới?", kind = "categorical", categories = ["APTIS", "Chưa có dự định hoặc chưa quyết định", "IELTS", "PET", "PTE", "TOEIC"] },
+  { name = "test_purposes", source_header = "Câu 8. Bạn muốn thi chứng chỉ tiếng Anh để làm gì? (Có thể chọn nhiều đáp án)", kind = "text", trim_whitespace = true },
+  { name = "intended_time", source_header = "Câu 9. Bạn dự định thi chứng chỉ khi nào?", kind = "categorical", categories = ["Chưa xác định", "Sau hơn 12 tháng", "Trong 6 tháng tới", "Trong 6–12 tháng tới"] },
+  { name = "info_sources", source_header = "Câu 10. Bạn tìm thông tin về chứng chỉ từ đâu? (Có thể chọn nhiều đáp án)", kind = "text", trim_whitespace = true },
+  { name = "q11_career_goal", source_header = "Yếu tố cá nhân [11. Mục tiêu nghề nghiệp]", kind = "numeric" },
+  { name = "q12_english_need", source_header = "Yếu tố cá nhân [12. Nhu cầu sử dụng tiếng Anh]", kind = "numeric" },
+  { name = "q13_fit_level", source_header = "Yếu tố cá nhân [13. Sự phù hợp của bài thi với trình độ tiếng Anh của bạn]", kind = "numeric" },
+  { name = "q14_difficulty", source_header = "Đặc điểm của chứng chỉ [14. Độ khó của bài thi]", kind = "numeric" },
+  { name = "q15_skills_format", source_header = "Đặc điểm của chứng chỉ [15. Các kỹ năng và dạng câu hỏi trong bài thi]", kind = "numeric" },
+  { name = "q16_duration_schedule", source_header = "Đặc điểm của chứng chỉ [16. Thời lượng bài thi và lịch thi]", kind = "numeric" },
+  { name = "q17_score_attainable", source_header = "Đặc điểm của chứng chỉ [17. Khả năng đạt điểm mong muốn]", kind = "numeric" },
+  { name = "q18_exam_fee", source_header = "Chi phí [18. Lệ phí thi]", kind = "numeric" },
+  { name = "q19_prep_cost", source_header = "Chi phí [19. Chi phí luyện thi]", kind = "numeric" },
+  { name = "q20_affordability", source_header = "Chi phí [20. Khả năng tài chính của bản thân hoặc gia đình]", kind = "numeric" },
+  { name = "q21_friends", source_header = "Ý kiến và thông tin từ người khác [21. Sự giới thiệu của bạn bè]", kind = "numeric" },
+  { name = "q22_lecturers", source_header = "Ý kiến và thông tin từ người khác [22. Ý kiến của giảng viên]", kind = "numeric" },
+  { name = "q23_social_media", source_header = "Ý kiến và thông tin từ người khác [23. Thông tin trên mạng xã hội]", kind = "numeric" },
+  { name = "q24_centers", source_header = "Ý kiến và thông tin từ người khác [24. Tư vấn từ trung tâm ngoại ngữ]", kind = "numeric" },
+  { name = "q25_output_standard", source_header = "Yếu tố từ nhà trường [25. Yêu cầu chuẩn đầu ra tiếng Anh]", kind = "numeric" },
+  { name = "q26_school_info", source_header = "Yếu tố từ nhà trường [26. Thông tin và tư vấn từ nhà trường]", kind = "numeric" },
+  { name = "q27_recognition", source_header = "Yếu tố từ nhà trường [27. Việc chứng chỉ được nhà trường công nhận]", kind = "numeric" },
+  { name = "fit_rating", source_header = "Câu 28. Chứng chỉ bạn đã chọn hoặc dự định thi phù hợp với bạn ở mức nào?", kind = "categorical", categories = ["Bình thường", "Chưa chọn chứng chỉ", "Phù hợp", "Rất không phù hợp", "Rất phù hợp"] },
+  { name = "recommend_intent", source_header = "Câu 29. Bạn có muốn giới thiệu chứng chỉ này cho sinh viên khác không?", kind = "categorical", categories = ["Chưa chắc", "Chưa chọn chứng chỉ", "Chắc chắn có", "Chắc chắn không", "Có lẽ có", "Có lẽ không"] },
+  { name = "difficulties", source_header = "Câu 30. Bạn gặp khó khăn gì khi chọn chứng chỉ? (Có thể chọn nhiều đáp án)", kind = "text", trim_whitespace = true },
+  { name = "wanted_info", source_header = "Câu 31. Bạn muốn nhà trường cung cấp thông tin gì? (Có thể chọn nhiều đáp án)", kind = "text", trim_whitespace = true },
+  { name = "open_comment", source_header = "Câu 32. Bạn có góp ý gì để giúp sinh viên chọn chứng chỉ phù hợp?", kind = "text", trim_whitespace = true },
+]
+
+[analysis]
+specifications = [
+  { id = "gender_counts", kind = "frequency", variable = "gender", denominator = "non_missing" },
+  { id = "study_year_counts", kind = "frequency", variable = "study_year", denominator = "non_missing" },
+  { id = "faculty_counts", kind = "frequency", variable = "faculty", denominator = "non_missing" },
+  { id = "english_level_counts", kind = "frequency", variable = "english_level", denominator = "non_missing" },
+  { id = "exam_experience_counts", kind = "frequency", variable = "exam_experience", denominator = "non_missing" },
+  { id = "intended_certificate_counts", kind = "frequency", variable = "intended_certificate", denominator = "non_missing" },
+  { id = "intended_time_counts", kind = "frequency", variable = "intended_time", denominator = "non_missing" },
+  { id = "fit_rating_counts", kind = "frequency", variable = "fit_rating", denominator = "non_missing" },
+  { id = "recommend_intent_counts", kind = "frequency", variable = "recommend_intent", denominator = "non_missing" },
+  { id = "q11_summary", kind = "numeric_summary", variable = "q11_career_goal" },
+  { id = "q12_summary", kind = "numeric_summary", variable = "q12_english_need" },
+  { id = "q13_summary", kind = "numeric_summary", variable = "q13_fit_level" },
+  { id = "q14_summary", kind = "numeric_summary", variable = "q14_difficulty" },
+  { id = "q15_summary", kind = "numeric_summary", variable = "q15_skills_format" },
+  { id = "q16_summary", kind = "numeric_summary", variable = "q16_duration_schedule" },
+  { id = "q17_summary", kind = "numeric_summary", variable = "q17_score_attainable" },
+  { id = "q18_summary", kind = "numeric_summary", variable = "q18_exam_fee" },
+  { id = "q19_summary", kind = "numeric_summary", variable = "q19_prep_cost" },
+  { id = "q20_summary", kind = "numeric_summary", variable = "q20_affordability" },
+  { id = "q21_summary", kind = "numeric_summary", variable = "q21_friends" },
+  { id = "q22_summary", kind = "numeric_summary", variable = "q22_lecturers" },
+  { id = "q23_summary", kind = "numeric_summary", variable = "q23_social_media" },
+  { id = "q24_summary", kind = "numeric_summary", variable = "q24_centers" },
+  { id = "q25_summary", kind = "numeric_summary", variable = "q25_output_standard" },
+  { id = "q26_summary", kind = "numeric_summary", variable = "q26_school_info" },
+  { id = "q27_summary", kind = "numeric_summary", variable = "q27_recognition" },
+]
+
+[report]
+title = "Báo cáo khảo sát lựa chọn chứng chỉ tiếng Anh"
+locale = "vi-VN"
+display_timezone = "Asia/Ho_Chi_Minh"
+research_question = "Sinh viên lựa chọn chứng chỉ tiếng Anh nào, vì mục đích gì, và cần thông tin/hỗ trợ nào từ nhà trường?"
+sampling_method = "Phiếu khảo sát Google Forms; mẫu thuận tiện, không xác minh duy nhất, không suy luận quần thể."
+collection_period = "05/10/2026 – 02/11/2026 (xác nhận lại theo ngày trích xuất thực tế)"
+conclusion = "Kết quả là mô tả mẫu đã trả lời; không suy diễn nhân quả hay đại diện toàn trường khi chưa có thiết kế lấy mẫu."
+
+[output]

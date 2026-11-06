@@ -1,0 +1,42 @@
+[project]
+name = "survey-sampling-report"
+version = "0.1.0"
+description = "University report: survey sampling results for English certificate selection (VisuaSlide consumer)."
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "visuaslide @ git+https://github.com/ryantr-statinops/VisuaSlide.git@2a566477fa7f2b262bec6a90846a4c5ab3dd6441",
+    "matplotlib",
+    "openpyxl",
+]
+
+[project.scripts]
+survey-report = "survey_report.cli:main"
+
+[dependency-groups]
+dev = [
+    "pytest",
+    "ruff",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/survey_report"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["E501"]

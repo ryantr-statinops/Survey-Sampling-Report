@@ -42,10 +42,15 @@ Core stack: Python 3.12, `uv`, `google-api-python-client`, Pydantic/TOML, pandas
 
 Manual refresh comes first (`auth` → `bootstrap-outputs` → `refresh --dry-run` → `refresh` → `review-layout`); scheduling only after sandbox acceptance passes. Never commit credentials, tokens, real survey responses, or private snapshots.
 
+Chi tiết kết nối Google Sheets/Slides + cách chèn PNG/Excel thủ công ngay hôm nay: [docs/google-connect.md](docs/google-connect.md).
+Báo cáo độc lập: [report/report.md](report/report.md) · Bảng Excel: [report/stats.xlsx](report/stats.xlsx) · Biểu đồ: [report/charts/](report/charts/).
+
 ## Status
 
 - `main` contains the plan and ignore rules (both pushed to `origin/main`).
-- Next: P1 offline pipeline → P2 charts + Excel → P3 report + Slides → P4 automation acceptance (see [plan/PLAN.md](plan/PLAN.md) §8).
+- P1 offline pipeline → P2 charts + Excel → P3 report: **Implemented** on `feat/full-report-pipeline`
+  (VisuaSlide pinned `2a566477`, TOML 32 câu A:AG, synthetic fixtures, 16 PNG + `report/stats.xlsx` + `report/report.md`, xem [docs/google-connect.md](docs/google-connect.md)).
+- P4 automation acceptance (live Google sandbox): **Open** — cần owner tạo Google Cloud OAuth + chạy auth/bootstrap/refresh (hướng dẫn ở [docs/google-connect.md](docs/google-connect.md)).
 
 ## Contributing
 

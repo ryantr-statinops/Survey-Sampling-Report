@@ -1,7 +1,7 @@
 # Báo cáo khảo sát lựa chọn chứng chỉ tiếng Anh — kết quả mẫu đã trả lời
 
 Nguồn: Google Sheets tab `gid=1653201454` (spreadsheet `14Ic0Zl7V5fr5dOkdo7ae5pwZpzk8v3HPGKliDHEQTiw`).
-Ngày trích xuất: 2026-11-06 · Số bản ghi: 89 · 32 câu hỏi + cột thời gian (email bị loại khỏi schema, range A:AG).
+Ngày trích xuất: 2026-11-09 · Số bản ghi: 89 · 32 câu hỏi + cột thời gian (email bị loại khỏi schema, range A:AG).
 
 > Đây là mô tả mẫu thuận tiện, **không** suy diễn nhân quả hay đại diện toàn trường. Số bản ghi ≠ số người duy nhất đã xác minh (chưa có cơ chế xác minh trùng lặp). Tỷ lệ làm tròn 1 chữ số; TB giữ precision, làm tròn hiển thị 2 chữ số.
 

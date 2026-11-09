@@ -40,3 +40,12 @@ def test_audit_respects_comma_inside_q31_option():
         required,
     )
     assert not audit["issues"]
+
+
+def test_audit_accepts_pet_alias_without_false_unknown_fragment():
+    categorical, multi, required = load_schema(ROOT / "config/survey.english_certs.example.toml")
+    header = multi["Q6"]
+    audit = audit_responses(
+        [{header: "PET Cambridge, IELTS"}], list(required), categorical, multi, required
+    )
+    assert not [issue for issue in audit["issues"] if issue["kind"] == "unknown_multi_option"]

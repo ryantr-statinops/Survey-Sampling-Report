@@ -36,8 +36,10 @@ def _unmatched_multi(value: str, question: str) -> list[str]:
     options = sorted(KNOWN_OPTIONS[question], key=len, reverse=True)
     text = value.strip()
     if question == "Q6":
-        for alias in PET_ALIASES:
-            text = re.sub(re.escape(alias), PET_CANONICAL, text, flags=re.IGNORECASE)
+        for alias in sorted(PET_ALIASES, key=len, reverse=True):
+            text = re.sub(
+                rf"(?<!\w){re.escape(alias)}(?!\w)", PET_CANONICAL, text, flags=re.IGNORECASE
+            )
         options = sorted(set(options) | {PET_CANONICAL}, key=len, reverse=True)
     unknown: list[str] = []
     while text.strip(" ,;\n\t"):

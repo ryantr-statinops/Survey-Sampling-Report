@@ -66,11 +66,13 @@ uv run --locked visuaslide bootstrap-outputs --config config/survey.english_cert
 
 > Nhắc: `refresh`/`resume` **không** mở browser. Testing-mode token có thể hết hạn ~7 ngày → chạy lại `auth` khi hết hạn.
 
+Với dự án này, dùng `survey-report-publish` cho các lần refresh: lệnh giữ đủ 13 khoa ở Q3, rút caption để không tràn textbox và cấu hình trục đúng cho bar chart Google Sheets.
+
 ## 4. Refresh + review (manual trước)
 
 ```powershell
-uv run --locked visuaslide refresh --config config/survey.english_certs.local.toml --dry-run
-uv run --locked visuaslide refresh --config config/survey.english_certs.local.toml
+uv run --locked survey-report-publish --config config/survey.english_certs.local.toml --dry-run
+uv run --locked survey-report-publish --config config/survey.english_certs.local.toml
 uv run --locked visuaslide review-layout --config config/survey.english_certs.local.toml
 ```
 
@@ -99,7 +101,7 @@ và không thay thế refresh SDK tự động ở mục 3–5.
 
 ```powershell
 uv run --locked visuaslide inspect-run --config config/survey.english_certs.local.toml --run-id <run-id>
-uv run --locked visuaslide resume --config config/survey.english_certs.local.toml --run-id <run-id>
+uv run --locked survey-report-publish --config config/survey.english_certs.local.toml --resume-run-id <run-id>
 uv run --locked visuaslide validate --config config/survey.english_certs.local.toml --snapshot-id <snapshot-id>
 uv run --locked visuaslide analyze --config config/survey.english_certs.local.toml --snapshot-id <snapshot-id>
 ```

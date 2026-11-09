@@ -149,9 +149,11 @@ uv run --locked visuaslide bootstrap-outputs --config config/survey.english_cert
 
 **Bước 7 — Dry-run → Publish → Review:**
 
+Dự án cung cấp `survey-report-publish` làm consumer entrypoint để giữ tương thích bố cục Q3 (13 khoa) và Google Sheets bar chart. Dùng entrypoint này cho refresh/resume bên dưới.
+
 ```powershell
-uv run --locked visuaslide refresh --config config/survey.english_certs.local.toml --dry-run
-uv run --locked visuaslide refresh --config config/survey.english_certs.local.toml
+uv run --locked survey-report-publish --config config/survey.english_certs.local.toml --dry-run
+uv run --locked survey-report-publish --config config/survey.english_certs.local.toml
 uv run --locked visuaslide review-layout --config config/survey.english_certs.local.toml
 ```
 - Dry-run đọc toàn bộ tab, validate, lưu snapshot + analysis, **không publish**.
@@ -173,7 +175,7 @@ uv run --locked pytest tests/sandbox -q
 uv run --locked visuaslide inspect-run --config config/survey.english_certs.local.toml --run-id <run-id>
 
 # Resume run dở (dùng analysis đã lưu, bỏ qua checkpoint đã xong, không đọc lại source)
-uv run --locked visuaslide resume --config config/survey.english_certs.local.toml --run-id <run-id>
+uv run --locked survey-report-publish --config config/survey.english_certs.local.toml --resume-run-id <run-id>
 
 # Replay snapshot cũ không cần Google
 uv run --locked visuaslide validate --config config/survey.english_certs.local.toml --snapshot-id <snapshot-id>

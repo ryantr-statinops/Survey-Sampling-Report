@@ -37,8 +37,9 @@ def _unmatched_multi(value: str, question: str) -> list[str]:
     text = value.strip()
     if question == "Q6":
         for alias in sorted(PET_ALIASES, key=len, reverse=True):
+            suffix = r"(?!\w|\s*\()" if alias.casefold() == "pet" else r"(?!\w)"
             text = re.sub(
-                rf"(?<!\w){re.escape(alias)}(?!\w)", PET_CANONICAL, text, flags=re.IGNORECASE
+                rf"(?<!\w){re.escape(alias)}{suffix}", PET_CANONICAL, text, flags=re.IGNORECASE
             )
         options = sorted(set(options) | {PET_CANONICAL}, key=len, reverse=True)
     unknown: list[str] = []

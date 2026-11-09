@@ -9,6 +9,7 @@ oauth/
 client_secret*.json
 token.json
 credentials*.json
+report/quality.json
 
 # Runtime snapshots and datasets containing real responses (synthetic fixtures only)
 data/raw/

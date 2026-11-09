@@ -12,6 +12,7 @@ dependencies = [
 
 [project.scripts]
 survey-report = "survey_report.cli:main"
+survey-report-publish = "survey_report.google_publish:main"
 
 [dependency-groups]
 dev = [
